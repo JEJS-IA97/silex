@@ -1,55 +1,55 @@
 # Checklist de Producción para Apps Generadas con IA
 
-## Diseño y UI/UX
-- [ ] Paleta de colores cohesiva (no neón aleatorio)
-- [ ] Jerarquía visual clara (el usuario sabe dónde mirar)
-- [ ] Efectos de brillo con propósito informativo
-- [ ] Iconos SVG profesionales (no emojis)
-- [ ] Layouts variados (no solo tarjetas)
-- [ ] Indicadores de estado con significado real
-- [ ] Identidad de marca única (evitar el "look AI")
+> Aplicar cada sección solo cuando sea pertinente al tipo de producto. Un checkbox no reemplaza evidencia.
 
-## SEO Técnico
-- [ ] Títulos únicos y descriptivos por página (50-60 caracteres)
-- [ ] Meta descripciones únicas por página (140-155 caracteres)
-- [ ] Un solo `<h1>` por página
-- [ ] Jerarquía de encabezados correcta (h1 → h2 → h3)
-- [ ] Etiquetas canónicas en todas las páginas indexables
-- [ ] Open Graph y Twitter Cards configurados
-- [ ] Imagen OG de 1200x630 píxeles
-- [ ] Favicon y Apple Touch Icon
-- [ ] Sitemap.xml generado y accesible
-- [ ] robots.txt configurado correctamente (no bloquear IA de búsqueda)
-- [ ] Datos estructurados JSON-LD en el HTML inicial
-- [ ] Atributo `<html lang="es">`
-- [ ] Texto alternativo en todas las imágenes
-- [ ] Página 404 personalizada con estado HTTP correcto
+## Diseño y UI/UX
+- [ ] Paleta y tipografía coherentes con la marca/producto
+- [ ] Jerarquía visual clara y acción principal evidente
+- [ ] Componentes usados por significado (tabla, lista, formulario, diálogo, etc.)
+- [ ] Indicadores de estado representan estados reales
+- [ ] Iconografía consistente y accesible
+- [ ] No hay decoración añadida solo para rellenar espacio o imitar tendencias
+- [ ] Responsive validado en los tamaños relevantes
+
+## SEO técnico — solo páginas públicas indexables
+- [ ] Títulos únicos y descriptivos; no se fuerza un límite fijo de caracteres
+- [ ] Meta descripciones útiles y específicas; no se fuerza un límite fijo de caracteres
+- [ ] Jerarquía de encabezados semántica y clara; no se exige exactamente un H1 como regla mecánica
+- [ ] Canonicalización definida donde realmente aplica
+- [ ] Open Graph / social cards cuando aportan valor
+- [ ] Favicon y metadatos básicos correctos
+- [ ] Sitemap cuando corresponda
+- [ ] robots.txt refleja una política explícita de rastreo
+- [ ] Datos estructurados solo cuando son veraces y aplicables
+- [ ] `lang` correcto
+- [ ] 404 útil y con status correcto cuando existe routing web
 
 ## Rendimiento
-- [ ] Bundle de JS < 500KB (usar code splitting)
-- [ ] `React.lazy()` y `Suspense` para rutas y componentes pesados
-- [ ] `manualChunks` en Vite para separar vendors
-- [ ] Imágenes optimizadas (WebP/AVIF) con `loading="lazy"`
-- [ ] Atributos `width` y `height` en imágenes (evitar CLS)
-- [ ] Sin errores en la consola del navegador
-- [ ] LCP < 2.5s, INP < 200ms, CLS < 0.1
+- [ ] Build de producción verificado
+- [ ] Bundle inicial razonable para el producto y medido, no comparado contra un límite arbitrario
+- [ ] Code splitting / lazy loading cuando aporta beneficio real
+- [ ] Imágenes optimizadas y dimensiones definidas cuando corresponda
+- [ ] No hay errores de consola en flujos normales de producción
+- [ ] Core Web Vitals medidos cuando sea un objetivo del producto web
 
 ## Seguridad
-- [ ] Sourcemaps deshabilitados en producción
-- [ ] Sin variables de entorno expuestas en el cliente
-- [ ] HTTPS configurado con certificado válido
-- [ ] Headers de seguridad (HSTS, CSP básico)
-- [ ] Sin endpoints de debug activos en producción
+- [ ] Sourcemaps y artefactos de depuración revisados
+- [ ] Las variables expuestas al cliente contienen solo datos que pueden ser públicos
+- [ ] HTTPS y headers de seguridad aplicables
+- [ ] Autorización aplicada en servidor
+- [ ] Validación de entrada en servidor
+- [ ] No hay secretos en código, bundles ni logs
+- [ ] Rate limiting / controles de abuso en operaciones sensibles cuando corresponda
 
-## Preparación para IA
-- [ ] robots.txt permite crawlers de búsqueda IA (OAI-SearchBot, PerplexityBot)
-- [ ] Contenido renderizado en el servidor (SSR/SSG)
-- [ ] Datos estructurados en el HTML inicial (no inyectados con JS)
-- [ ] Contenido claro y extractable para answer engines
+## Preparación para IA y answer engines
+- [ ] La política de crawlers de búsqueda/IA está decidida según el producto
+- [ ] No se bloquean o permiten crawlers por copiar una plantilla sin evaluar el caso
+- [ ] El contenido público importante es descubrible y representable en el rendering elegido
+- [ ] No se exige SSR/SSG a una app privada o a una página donde no aporta valor
+- [ ] `llms.txt`, si existe, es opcional y tiene contenido útil y verificable
 
 ## Despliegue
-- [ ] Dominio personalizado configurado
-- [ ] URL de producción (no *.vercel.app)
-- [ ] Variables de entorno configuradas en el hosting
-- [ ] Pipeline de CI/CD funcionando
-- [ ] Monitoreo de errores configurado
+- [ ] Dominio y URLs públicas intencionales cuando corresponda
+- [ ] Variables de entorno configuradas de forma segura
+- [ ] Pipeline de CI/CD validado cuando exista
+- [ ] Monitoreo/observabilidad definido para producción según necesidad
