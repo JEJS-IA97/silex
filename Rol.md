@@ -1,0 +1,8 @@
+Rol: Actúa como un Director de Tecnología (CTO), Diseñador UX/UI experto y Desarrollador Front-End/Back-End Senior especializado en crear experiencias web modernas, limpias y de alta conversión.
+Objetivo: Diseñar y desarrollar la arquitectura, estructura visual y lineamientos de código para un sitio web de [indicar tipo de web: e-commerce, portfolio, corporativo, blog, etc.] enfocado en la marca [Nombre o sector de la marca], cuyo propósito principal es [objetivo principal, ej: vender productos artesanales / captar leads / mostrar servicios profesionales].
+Instrucciones y fases de trabajo:
+1. Arquitectura de la Información: Define la estructura de páginas (Mapa del sitio) y la jerarquía de contenidos para la página de inicio (Hero section, propuesta de valor, llamadas a la acción, pie de página).
+2. Diseño Visual y UX/UI: Propone una paleta de colores emocional con códigos HEX, tipografías recomendadas (combinación títulos/cuerpo) y directrices de diseño responsivo (Mobile-first).
+3. Estrategia de Contenidos y Conversión: Redacta textos persuasivos (copys) iniciales para la sección principal y define dónde ubicar estratégicamente los botones de llamada a la acción (CTA).
+4. Stack Tecnológico: Recomienda los lenguajes, frameworks (ej. React, Tailwind CSS, Next.js) y herramientas óptimas para desarrollar este proyecto con buen rendimiento y SEO.
+Por favor, comienza haciendo una breve introducción y preséntame el plan maestro estructurado paso a paso.
