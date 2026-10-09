@@ -75,3 +75,7 @@ Reinicia OpenCode después de añadir o modificar skills.
 ## Validar antes de declarar terminado
 
 Recorre `docs/checklist.md` y la fase 7 (Validación): evidencia por RF, no declaraciones sin verificar.
+
+## Licencia
+
+MIT - ver [LICENSE](LICENSE). Las skills de terceros conservan sus propias licencias (MIT/Apache-2.0, dentro de cada carpeta).
