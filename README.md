@@ -14,7 +14,7 @@ Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda 
 
 - **Trazabilidad:** cada línea de código existe porque un requisito (RF) la justifica.
 - **Auditabilidad:** se sabe qué se pidió, qué se decidió y por qué.
-- **Robustez:** los tests son la puerta de entrada; no se avanza con tests en rojo.
+- **Robustez:** la verificación es la puerta de entrada; no se avanza con la verificación en rojo.
 - **Mantenibilidad:** el contexto está en archivos, no en la cabeza de nadie.
 - **IA controlada:** el agente sigue reglas fijas, no improvisa.
 
@@ -24,13 +24,13 @@ Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda 
 
 | # | Fase | Entrada | Salida | Prompt |
 |---|------|---------|--------|--------|
-| 1 | Constitución | Idea del proyecto | `docs/constitution.md` | Ver `prompts.md` |
-| 2 | Spec | Constitución + idea | `specs/NNN-*/spec.md` | Ver `prompts.md` |
-| 3 | Clarificación | Spec | Spec revisada por QA | Ver `prompts.md` |
-| 4 | Plan | Spec + constitución | `specs/NNN-*/plan.md` | Ver `prompts.md` |
-| 5 | Tareas | Plan | `specs/NNN-*/tasks.md` | Ver `prompts.md` |
-| 6 | Implementación | Tareas | Código + tests | Ver `prompts.md` |
-| 7 | Validación | Spec + código | Veredicto RF por RF | Ver `prompts.md` |
+| 1 | Constitución | Idea del proyecto | `docs/constitution.md` | Ver `docs/prompts.md` |
+| 2 | Spec | Constitución + idea | `specs/NNN-*/spec.md` | Ver `docs/prompts.md` |
+| 3 | Clarificación | Spec | Spec revisada por QA | Ver `docs/prompts.md` |
+| 4 | Plan | Spec + constitución | `specs/NNN-*/plan.md` | Ver `docs/prompts.md` |
+| 5 | Tareas | Plan | `specs/NNN-*/tasks.md` | Ver `docs/prompts.md` |
+| 6 | Implementación | Tareas | Código + verificación | Ver `docs/prompts.md` |
+| 7 | Validación | Spec + código | Veredicto RF por RF | Ver `docs/prompts.md` |
 
 **Regla de oro:** cada fase espera aprobación humana antes de pasar a la siguiente.
 
@@ -43,3 +43,24 @@ Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda 
 ```bash
 git clone <esta-base> {{NOMBRE_PROYECTO}}
 cd {{NOMBRE_PROYECTO}}
+```
+
+Reemplaza los placeholders `{{...}}` de `README.md`, `AGENTS.md` y `docs/constitution.md`.
+
+### 2. Aprobar la constitución (fase 1)
+
+Usa el prompt de Constitución de `docs/prompts.md`. Edita `docs/constitution.md` con los principios concretos del proyecto y espera la aprobación del usuario.
+
+### 3. Ejecutar el flujo SDD
+
+Sigue las fases 2 a 7 con los prompts de `docs/prompts.md`, una fase cada vez. No saltes fases sin aprobación explícita.
+
+### 4. Trabajar con el estándar anti-vibecode
+
+- `docs/standard/anti-vibecode-guide.md` — guía detallada (guardrails de calidad, diseño, accesibilidad, tests).
+- `docs/standard/anti-vibecode-standard.json` — espejo machine-readable de las reglas.
+- `docs/standard/anti-vibecode-prompt.md` — prompt portable para sesiones donde no está este repo.
+
+### 5. Validar antes de declarar terminado
+
+Recorre `docs/checklist.md` y la fase 7 (Validación): evidencia por RF, no declaraciones sin verificar.

@@ -4,13 +4,23 @@ Use these instructions whenever you create a new application or modify an existi
 
 Your goal is to produce software that looks and behaves as if it was intentionally designed, engineered, tested and maintained by a real product team. Do not optimize for the appearance of an AI-generated demo.
 
+## Governance and applicability
+
+`AGENTS.md`, the approved constitution, and the active spec/plan take priority over this prompt. This prompt supplies guardrails where the project documents are silent; it must not override an explicit approved project decision.
+
+Classify every change before editing: **new feature/behavior change** (requires an approved RF), **bug or regression** (reproduce, root cause, smallest safe fix), **refactor** (no behavior change; evidence required), **docs/config/tooling** (justified by an approved task or technical decision).
+
+Do not apply "tests first" as a mechanical obligation to everything. Use the verification appropriate to the type of change, keeping a strong TDD preference for critical logic and behavior (see guide §22: tests by value, merged similar tests, no trivial tests).
+
+Once a plan is approved or a range of tasks is explicitly authorized, execute that range without stopping after each task, as long as the scope does not change, no blocking decision appears and verification keeps passing.
+
 ## Absolute rules
 
 Do not add UI, architecture, dependencies, animations, metadata or abstractions unless they solve a real user, product or engineering problem.
 
 Do not fabricate functionality. Search, filters, pagination, authentication, notifications, live states, charts, persistence, API calls and success messages must reflect real behavior or be explicitly marked as mocked.
 
-Do not invent business rules, security rules, API contracts, permissions, financial calculations, prices or legal claims. Isolate reasonable assumptions so they are easy to change.
+Do not invent business rules, security rules, API contracts, permissions, financial calculations, prices or legal claims. When a missing decision can change behavior, architecture, security, permissions, data integrity or public contracts, do not guess: mark it `[NEEDS DECISION]` and ask for the decision. An assumption is allowed only when the user explicitly delegates it or an approved project rule defines it; document the assumption and its scope.
 
 Prefer purposeful simplicity over decorative complexity.
 

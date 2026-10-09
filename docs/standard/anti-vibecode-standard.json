@@ -49,6 +49,28 @@
       "refactor only when justified"
     ]
   },
+  "governance": {
+    "instruction_precedence": [
+      "user-approved-scope",
+      "approved-constitution",
+      "active-approved-spec-and-plan",
+      "AGENTS.md",
+      "docs/standard/anti-vibecode-guide.md",
+      "docs/standard/anti-vibecode-standard.json",
+      "role-and-reference-prompts"
+    ],
+    "missing_decision": "stop_and_request_decision_when_behavior_architecture_security_permissions_data_integrity_or_public_contracts_are_affected",
+    "explicit_assumptions_only": true,
+    "traceability_scope": "behavior_and_contract_changes",
+    "supporting_work_may_map_to": ["non_functional_requirement", "approved_task", "technical_decision"]
+  },
+  "research": {
+    "read_only": true,
+    "primary_sources_preferred": true,
+    "must_record_date_for_current_information": true,
+    "distinguish_fact_inference_recommendation": true,
+    "must_not_modify_repository": true
+  },
   "visual_rules": {
     "avoid_default_ai_aesthetic": true,
     "avoid_unnecessary_neon": true,
@@ -252,6 +274,10 @@
     "unit_tests_where_valuable": true,
     "integration_tests_where_valuable": true,
     "e2e_tests_for_critical_journeys": true,
+    "tests_for_critical_processes_only": true,
+    "merge_similar_tests_into_short_parametrized": true,
+    "no_render_only_tests": true,
+    "alternative_evidence_for_ui_docs_config": true,
     "do_not_inflate_test_count": true
   },
   "audit_findings": {
@@ -284,7 +310,7 @@
     "no expected production console errors remain",
     "no meaningless abstractions or dead code remain in changed areas"
   ],
-  "agent_instruction": "Use this standard as a guardrail rather than a mechanical checklist. Before adding UI, architecture, dependencies, animations, metadata, badges, cards or abstractions, identify the user or engineering problem it solves. If it exists only because it looks modern, fills space, imitates trends or makes a generated demo feel richer, do not add it. For existing projects, inspect and make the smallest safe root-cause fix before refactoring. Never claim an implementation, integration, test, SEO improvement or performance improvement unless it was actually implemented and verified.",
+  "agent_instruction": "Use this standard as a guardrail rather than a mechanical checklist. Before adding UI, architecture, dependencies, animations, metadata, badges, cards or abstractions, identify the user or engineering problem it solves. If it exists only because it looks modern, fills space, imitates trends or makes a generated demo feel richer, do not add it. Do not invent decisions: when a decision that affects behavior, architecture, security, permissions, data integrity or public contracts is missing, mark it [NEEDS DECISION] and ask for the decision. Traceability applies to behavior and contract changes, not to every supporting file. For existing projects, inspect and make the smallest safe root-cause fix before refactoring. Never claim an implementation, integration, test, SEO improvement or performance improvement unless it was actually implemented and verified.",
   "research_basis": {
     "note": "Normative/technical references were checked on 2026-09-17. llms.txt remains an emerging proposal/convention, not a universal mandatory web standard.",
     "sources": [

@@ -1,3 +1,7 @@
+# Prompts de diseño web y agencia
+
+> Material de referencia en español para fases de diseño web (no forma parte de la jerarquía de autoridad de `AGENTS.md`).
+
 1. Cuestionario inicial para el cliente
 
 Redacta un cuestionario inicial para un nuevo cliente de diseño web del sector [sector]. Incluye objetivos de negocio, público objetivo, competidores, personalidad de marca, funciones imprescindibles, contenido disponible, presupuesto, calendario y cómo medirá el éxito.

@@ -24,6 +24,12 @@ Prioritize, in this order:
 
 Never add visual complexity merely to make a page look more "designed".
 
+## 0.1 Governance and applicability
+
+This document is a reusable engineering standard, not the project's source of truth. `AGENTS.md`, the approved constitution, and the active spec/plan define project-specific behavior. This standard supplies guardrails where the project documents are silent. It must not override an explicit approved project decision.
+
+Traceability applies primarily to behavior and contract changes. Supporting code, tests, docs, configuration and infrastructure may be justified by an approved task, non-functional requirement or technical decision without inventing an RF for every file.
+
 ---
 
 # 1. AI-SPECIFIC ANTI-PATTERNS
@@ -81,7 +87,7 @@ Do not silently invent:
 - Data retention rules.
 - Legal claims.
 
-When requirements are missing, use the smallest reasonable assumption and isolate it so it can be changed later. Do not spread invented assumptions through the application.
+When a missing decision can change behavior, architecture, security, permissions, data integrity or public API contracts, do not guess. Mark it as `[NEEDS DECISION]`, isolate the blocked work and ask for the decision. An assumption is allowed only when the user explicitly delegates that decision or an approved project rule already defines it; document the assumption and its scope. Do not spread invented assumptions through the application.
 
 ## 1.4 Do not over-engineer
 Avoid:
@@ -110,6 +116,16 @@ Avoid:
 ---
 
 # 2. VISUAL DESIGN STANDARD
+
+Follow this design process before and while styling (detailed guidance: `frontend-ui-engineering` skill):
+
+1. **Design tokens** — define color, typography, spacing, radii, shadows and iconography once (see 2.1).
+2. **Semantic layout** — structure the page with semantic HTML, clear hierarchy and responsive rules (see 2.2, section 3).
+3. **States** — design loading, empty, error, success, unauthorized and offline states (see 13).
+4. **Meaning-based components** — choose each component for what it communicates (see 2.3–2.5).
+5. **Polish** — typography refinement, spacing rhythm, subtle motion and effects. Effects are allowed when they communicate state, hierarchy or feedback — never as filler (see 1.1: intentionality, not prohibition).
+
+Aim for an elegant, modern, polished result: restraint is not austerity. The test is whether each visual choice solves a user or engineering problem.
 
 ## 2.1 Establish a design system before styling pages
 Define a small, coherent system for:
@@ -750,7 +766,13 @@ Use the appropriate test level:
 - Integration tests for component/service interactions.
 - E2E tests for critical user journeys.
 
-Do not create meaningless tests that only confirm a component renders.
+Write tests by value, not by count. A test exists only if it can fail because of a real regression that matters:
+
+- Prioritize critical processes: data/persistence, money, authentication/authorization, security boundaries, core business rules, their error handling, and end-to-end coverage of critical user journeys.
+- Merge tests that share the same setup or scenario into short parametrized/table-driven tests. One test per scenario, not per implementation detail. Merging must not create long or slow tests: keep each case small; if a merged test becomes slow, parametrize at the unit level instead.
+- Do not create meaningless tests that only confirm a component renders, a getter returns a value, or a third-party library behaves as documented.
+- RFs in UI, docs, configuration or infrastructure may be verified with appropriate alternative evidence (checklist pass, review, build output, or manual verification recorded in the task).
+- Warning sign: if the suite grows linearly with every RF added, revisit the test design — test count must not scale with requirement count.
 
 Do not inflate test count to appear complete.
 

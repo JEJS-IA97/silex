@@ -1,49 +1,49 @@
-# Agente de investigación
+# Research agent
 
-## Objetivo
+## Objective
 
-Añadir una capa de investigación actual al flujo de desarrollo sin convertir al modelo investigador en el encargado de programar.
+Add a current-research layer to the development flow without turning the researcher model into the one that writes code.
 
-La investigación debe responder preguntas como:
+Research must answer questions like:
 
-- ¿Cuál es la API/versión correcta hoy?
-- ¿Qué cambió en una librería/framework?
-- ¿Existe una vulnerabilidad o breaking change conocido?
-- ¿Qué recomienda la documentación oficial para un caso concreto?
-- ¿Qué alternativas existen y qué trade-offs tienen?
-- ¿Qué restricciones actuales de una plataforma pueden afectar el diseño?
+- What is the correct API/version today?
+- What changed in a library/framework?
+- Is there a known vulnerability or breaking change?
+- What does the official documentation recommend for a concrete case?
+- What alternatives exist and what are their trade-offs?
+- Which current platform restrictions may affect the design?
 
-El researcher entrega evidencia al agente constructor. El constructor decide si esa evidencia justifica un cambio, y cualquier cambio de comportamiento sigue pasando por spec/plan/aprobación.
+The researcher delivers evidence to the building agent. The builder decides whether that evidence justifies a change, and any behavior change still goes through spec/plan/approval.
 
-## Integración recomendada con OpenCode
+## Recommended integration with OpenCode
 
-OpenCode permite subagentes definidos en `.opencode/agents/` y permite controlar sus permisos. El researcher incluido aquí no tiene permisos de edición ni shell; solo investigación web.
+OpenCode supports subagents defined in `.opencode/agents/` with controlled permissions. The researcher included here has no edit or shell permissions; web research only.
 
-En la documentación actual de OpenCode, `websearch` y `webfetch` están disponibles como herramientas de investigación; `websearch` no requiere una API key propia cuando se habilita mediante la infraestructura compatible de OpenCode. Para activarlo al iniciar OpenCode en PowerShell:
+In current OpenCode documentation, `websearch` and `webfetch` are available as research tools; `websearch` does not require its own API key when enabled through OpenCode's compatible infrastructure. To enable it when starting OpenCode in PowerShell:
 
 ```powershell
 $env:OPENCODE_ENABLE_EXA="1"
 opencode
 ```
 
-Después puede invocarse manualmente con:
+It can then be invoked manually with:
 
 ```text
-@researcher investiga ...
+@researcher investigate ...
 ```
 
-## Google Gemini API: uso opcional
+## Google Gemini API: optional
 
-No recomiendo convertir Gemini en el agente programador. Puede ser útil como **fuente adicional de investigación**, especialmente para grounding con Google Search.
+I do not recommend turning Gemini into the coding agent. It can be useful as an **additional research source**, especially for grounding with Google Search.
 
-A fecha de 2026-10-06, la documentación de Gemini indica que ciertos modelos tienen cuota gratuita de entrada/salida y que Gemini 2.5 Flash-Lite dispone de grounding con Google Search gratuito de hasta 500 solicitudes diarias en el nivel gratuito. La cuota depende del proyecto/modelo y puede cambiar.
+As of 2026-10-06, Gemini documentation states that certain models have a free input/output quota and that Gemini 2.5 Flash-Lite offers free Google Search grounding of up to 500 requests per day on the free tier. Quotas depend on project/model and may change.
 
-La capa gratuita también indica que el contenido puede utilizarse para mejorar productos de Google. Por eso, para repositorios privados o información sensible, el researcher no debe enviar automáticamente el código completo ni secretos a Gemini.
+The free tier also states that content may be used to improve Google products. Therefore, for private repositories or sensitive information, the researcher must not automatically send complete code or secrets to Gemini.
 
-La API key debe vivir fuera del repositorio, por ejemplo en `GEMINI_API_KEY`, y nunca en código, `VITE_*`, prompts versionados o commits.
+The API key must live outside the repository, for example in `GEMINI_API_KEY`, and never in code, `VITE_*`, versioned prompts or commits.
 
-## Decisión recomendada
+## Recommended decision
 
-Para esta base reutilizable, deja **OpenCode + websearch/webfetch** como camino por defecto: es más simple, no introduce una credencial obligatoria y mantiene el sistema agnóstico del proveedor.
+For this reusable base, keep **OpenCode + websearch/webfetch** as the default path: simpler, no mandatory credential, and provider-agnostic.
 
-Añade Gemini solo como integración opcional cuando realmente aporte una ventaja verificable de cobertura o grounding con Google Search.
+Add Gemini only as an optional integration when it genuinely adds a verifiable coverage or Google Search grounding advantage.

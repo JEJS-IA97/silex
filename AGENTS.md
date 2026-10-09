@@ -1,82 +1,83 @@
 # AGENTS.md — {{NOMBRE_PROYECTO}}
 
-Este archivo es el contrato operativo del agente. Las reglas del proyecto no deben interpretarse por fragmentos aislados: la jerarquía siguiente determina qué documento manda.
+This file is the agent's operational contract. Project rules must not be interpreted as isolated fragments: the following hierarchy determines which document wins.
 
-## Jerarquía de autoridad
+## Authority hierarchy
 
-1. **Solicitud del usuario.** Puede cambiar el alcance, pero todo cambio de comportamiento debe quedar reflejado en la spec antes de implementarse.
-2. **Constitución aprobada** en `docs/constitution.md`.
-3. **Spec y plan aprobados** de la feature activa.
-4. **Este AGENTS.md**: reglas operativas generales.
-5. **ANTI_VIBECODE_GUIDE.md** y `ANTI_VIBECODE_STANDARD.json`: estándares de calidad y guardrails.
-6. `Rol.md`, `prompts.md`, `promptsWeb.md` y `guides.md`: material operativo o de referencia, nunca autoridad superior.
+1. **User request.** It may change scope, but every behavior change must be reflected in the spec before implementation.
+2. **Approved constitution** in `docs/constitution.md`.
+3. **Approved spec and plan** of the active feature.
+4. **This AGENTS.md**: general operational rules.
+5. `docs/standard/anti-vibecode-guide.md` and `docs/standard/anti-vibecode-standard.json`: quality standards and guardrails.
+6. `docs/role.md`, `docs/prompts.md`, `docs/web-prompts.md` and `docs/references.md`: operational or reference material, never higher authority.
 
-Si existe un conflicto no resuelto sobre seguridad, integridad de datos o comportamiento, **no improvises**: detén el avance y solicita la decisión necesaria.
+If there is an unresolved conflict about security, data integrity or behavior, **do not improvise**: stop and request the required decision.
 
-## Proyecto
+## Project
 {{DESCRIPCIÓN_BREVE_DEL_PROYECTO}}
 
 Stack: {{STACK}}.
-Estructura: código en `src/`, tests en `tests/`, specs en `specs/`.
+Structure: code in `src/`, tests in `tests/`, specs in `specs/`.
 
-## Comandos
-- Ejecutar: `{{COMANDO_EJECUCION}}`
+## Commands
+- Run: `{{COMANDO_EJECUCION}}`
 - Tests: `{{COMANDO_TESTS}}`
-- Lint/formato: `{{COMANDO_LINT}}`
+- Lint/format: `{{COMANDO_LINT}}`
 
-## Clasificación del trabajo
+## Work classification
 
-Antes de editar, identifica el tipo de cambio:
+Before editing, identify the type of change:
 
-- **Nueva funcionalidad / cambio de comportamiento:** requiere RF aprobado en la spec.
-- **Bug o regresión:** primero reproduce, identifica causa raíz y corrige el comportamiento ya definido. Si la spec no representa el comportamiento correcto, actualízala antes o como parte del cambio aprobado.
-- **Refactor:** no debe cambiar comportamiento; requiere evidencia de que el contrato existente se conserva.
-- **Docs, configuración, infraestructura o tooling:** pueden no tener RF, pero deben estar justificados por una tarea, decisión técnica o requisito no funcional aprobado.
+- **New feature / behavior change:** requires an approved RF in the spec.
+- **Bug or regression:** first reproduce, identify the root cause and fix the already-defined behavior. If the spec does not represent the correct behavior, update it before or as part of the approved change.
+- **Refactor:** must not change behavior; requires evidence that the existing contract is preserved.
+- **Docs, configuration, infrastructure or tooling:** may have no RF, but must be justified by an approved task, technical decision or non-functional requirement.
 
-La trazabilidad debe cubrir todo cambio de comportamiento; no debe usarse el RF como excusa para exigirlo a cada archivo de soporte.
+Traceability must cover every behavior change; do not use the RF requirement as an excuse to demand it for every supporting file.
 
-## Reglas obligatorias
+## Mandatory rules
 
-- Inspecciona el repositorio antes de editar.
-- Lee la constitución y la spec/plan activos antes de tocar código relacionado.
-- No inventes requisitos, reglas de negocio, permisos, contratos API, decisiones de seguridad o datos.
-- Si falta una decisión que cambia comportamiento o arquitectura, usa `[NECESITA DECISIÓN]` y detente en ese punto.
-- Una suposición solo puede usarse si el usuario la autorizó explícitamente o una regla aprobada ya la define; debe quedar documentada y aislada.
-- Haz el cambio más pequeño y reversible que resuelva la causa raíz.
-- Preserva el comportamiento no relacionado con la tarea.
-- No añadas dependencias, abstracciones, UI o efectos solo para que el proyecto parezca más completo o moderno.
+- Inspect the repository before editing.
+- Read the constitution and the active spec/plan before touching related code.
+- Do not invent requirements, business rules, permissions, API contracts, security decisions or data decisions.
+- If a decision that changes behavior or architecture is missing, use `[NEEDS DECISION]` and stop at that point.
+- An assumption may only be used if the user explicitly authorized it or an approved rule already defines it; it must be documented and isolated.
+- Make the smallest reversible change that fixes the root cause.
+- Preserve behavior unrelated to the task.
+- Do not add dependencies, abstractions, UI or effects just to make the project look more complete or modern.
+- **UI work:** before designing or touching interface code, load the `frontend-ui-engineering` skill (skill tool in OpenCode; if the skill is unavailable in the tool, follow the design sections of `docs/standard/anti-vibecode-guide.md`). Aim for an elegant, modern, polished design: effects and motion are allowed when they serve a real purpose, never as decoration (guide 1.1: intentionality, not prohibition).
 
-## Verificación
+## Verification
 
-Después de un cambio, ejecuta la verificación apropiada al tipo de trabajo:
+After a change, run the verification appropriate to the type of work:
 
-- Código de comportamiento: tests relevantes y suite completa cuando esté configurada.
-- Tipos/lint/build: ejecutar los checks configurados cuando el cambio los pueda afectar.
-- UI: comprobar estados, rutas, responsive y accesibilidad aplicables.
-- Docs/config: validar sintaxis, referencias y el mecanismo afectado.
+- Behavior code: relevant tests and the full suite when configured. Prioritize tests for critical processes (data, money, auth, security, core business rules), merge similar tests into short parametrized ones, and do not write trivial or render-only tests.
+- Types/lint/build: run the configured checks when the change could affect them.
+- UI: check states, routes, responsive behavior and applicable accessibility.
+- Docs/config: validate syntax, references and the affected mechanism.
 
-No marques una tarea como terminada ni afirmes que algo está verificado sin evidencia.
+Do not mark a task as done or claim something is verified without evidence.
 
-## Aprobación y delegación
+## Approval and delegation
 
-Por defecto, cada fase de SDD requiere aprobación humana antes de avanzar.
+By default, each SDD phase requires human approval before moving on.
 
-Una vez que el usuario aprueba un plan o autoriza explícitamente un rango de tareas, el agente puede ejecutar ese rango sin detenerse después de cada tarea, siempre que:
+Once the user approves a plan or explicitly authorizes a range of tasks, the agent may execute that range without stopping after each task, as long as:
 
-- no cambie el alcance aprobado;
-- no aparezca una decisión bloqueante;
-- las verificaciones sigan pasando;
-- no se introduzca una regresión conocida.
+- it does not change the approved scope;
+- no blocking decision appears;
+- verifications keep passing;
+- no known regression is introduced.
 
-Si aparece una decisión nueva o un conflicto, detente aunque exista delegación previa.
+If a new decision or conflict appears, stop even if there was previous delegation.
 
-## Al terminar
+## When finishing
 
-Reporta:
-- qué cambió;
-- qué requisito, tarea o decisión cubre;
-- verificación ejecutada y resultado;
-- riesgos o decisiones pendientes;
-- siguiente paso, solo si corresponde.
+Report:
+- what changed;
+- which requirement, task or decision it covers;
+- verification executed and its result;
+- risks or pending decisions;
+- next step, only if applicable.
 
-PÁRATE cuando el alcance aprobado haya terminado.
+STOP when the approved scope has been finished.
