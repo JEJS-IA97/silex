@@ -40,7 +40,7 @@ Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda 
 
 ### 1. Placeholders pendientes
 
-Este proyecto se creó desde `projects-base`; nombre y descripción ya vienen resueltos en `README.md` y `AGENTS.md`. Quedan por completar a mano los `{{...}}` de `AGENTS.md` (`{{STACK}}`, comandos de run/test/lint).
+Este proyecto se creó desde `Silex`; nombre y descripción ya vienen resueltos en `README.md` y `AGENTS.md`. Quedan por completar a mano los `{{...}}` de `AGENTS.md` (`{{STACK}}`, comandos de run/test/lint).
 
 ### 2. Aprobar la constitución (fase 1)
 

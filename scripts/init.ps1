@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Convierte un clone de projects-base en un proyecto limpio.
+  Convierte un clone de Silex en un proyecto limpio.
 
 .DESCRIPTION
   - Rellena {{PROJECT_NAME}} y {{PROJECT_SHORT_DESCRIPTION}} en README/AGENTS.
@@ -26,7 +26,7 @@ $root = Split-Path -Parent $PSScriptRoot
 # Marca de seguridad: solo desde la raiz de un clone del template (o una vez inicializado).
 foreach ($marker in 'AGENTS.md', '.opencode', 'specs', (Join-Path 'templates' 'README.md')) {
   if (-not (Test-Path (Join-Path $root $marker))) {
-    throw "No parece la raiz de projects-base (falta '$marker'). Ejecuta este script desde un clone nuevo del template."
+    throw "No parece la raiz de Silex (falta '$marker'). Ejecuta este script desde un clone nuevo del template."
   }
 }
 
@@ -72,7 +72,7 @@ git -C $root init -q
 git -C $root add -A
 $committed = $false
 try {
-  git -C $root -c core.safecrlf=false commit -q -m "chore: init $Name from projects-base"
+  git -C $root -c core.safecrlf=false commit -q -m "chore: init $Name from Silex"
   if ($LASTEXITCODE -eq 0) { $committed = $true }
 } catch { }
 

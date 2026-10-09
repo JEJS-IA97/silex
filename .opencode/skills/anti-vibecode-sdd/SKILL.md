@@ -7,7 +7,7 @@ description: Creates robust, scalable, maintainable and documented software proj
 
 ## Overview
 
-This skill packages the projects-base method: **Spec-Driven Development (SDD)** plus the **anti-vibecode engineering standard**. Goal: software that looks and behaves as if a competent product team designed, engineered, tested and maintained it — no generic AI aesthetics, no fake functionality, no unverified claims, no test inflation.
+This skill packages the Silex method: **Spec-Driven Development (SDD)** plus the **anti-vibecode engineering standard**. Goal: software that looks and behaves as if a competent product team designed, engineered, tested and maintained it — no generic AI aesthetics, no fake functionality, no unverified claims, no test inflation.
 
 ## Resources in this folder
 

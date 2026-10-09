@@ -1,4 +1,4 @@
-# projects-base
+# Silex
 
 Plantilla meta para crear proyectos **no vibe-codeados** con Spec-Driven Development (SDD): la especificación manda sobre el código, y ningún comportamiento se implementa sin estar definido y aprobado antes.
 
@@ -7,7 +7,7 @@ Arranca un proyecto con IA sin heredar el caos del "hazme una app": constitució
 ## Quickstart
 
 ```powershell
-git clone https://github.com/JEJS-IA97/projects-base.git mi-proyecto
+git clone https://github.com/JEJS-IA97/silex.git mi-proyecto
 cd mi-proyecto
 .\scripts\init.ps1 -Name "Mi Proyecto" -Description "Descripcion corta del proyecto"
 ```
