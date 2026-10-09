@@ -1,6 +1,6 @@
-# {{NOMBRE_PROYECTO}}
+# {{PROJECT_NAME}}
 
-{{DESCRIPCIÓN_BREVE_DEL_PROYECTO}}
+{{PROJECT_SHORT_DESCRIPTION}}
 
 Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda sobre el código, y ningún comportamiento se implementa sin estar definido y aprobado antes.
 
@@ -24,13 +24,13 @@ Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda 
 
 | # | Fase | Entrada | Salida | Prompt |
 |---|------|---------|--------|--------|
-| 1 | Constitución | Idea del proyecto | `docs/constitution.md` | Ver `docs/prompts.md` |
-| 2 | Spec | Constitución + idea | `specs/NNN-*/spec.md` | Ver `docs/prompts.md` |
-| 3 | Clarificación | Spec | Spec revisada por QA | Ver `docs/prompts.md` |
-| 4 | Plan | Spec + constitución | `specs/NNN-*/plan.md` | Ver `docs/prompts.md` |
-| 5 | Tareas | Plan | `specs/NNN-*/tasks.md` | Ver `docs/prompts.md` |
-| 6 | Implementación | Tareas | Código + verificación | Ver `docs/prompts.md` |
-| 7 | Validación | Spec + código | Veredicto RF por RF | Ver `docs/prompts.md` |
+| 1 | Constitución | Idea del proyecto | `docs/constitution.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
+| 2 | Spec | Constitución + idea | `specs/NNN-*/spec.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
+| 3 | Clarificación | Spec | Spec revisada por QA | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
+| 4 | Plan | Spec + constitución | `specs/NNN-*/plan.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
+| 5 | Tareas | Plan | `specs/NNN-*/tasks.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
+| 6 | Implementación | Tareas | Código + verificación | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
+| 7 | Validación | Spec + código | Veredicto RF por RF | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
 
 **Regla de oro:** cada fase espera aprobación humana antes de pasar a la siguiente.
 
@@ -41,26 +41,41 @@ Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda 
 ### 1. Clonar y renombrar
 
 ```bash
-git clone <esta-base> {{NOMBRE_PROYECTO}}
-cd {{NOMBRE_PROYECTO}}
+git clone <esta-base> {{PROJECT_NAME}}
+cd {{PROJECT_NAME}}
 ```
 
 Reemplaza los placeholders `{{...}}` de `README.md`, `AGENTS.md` y `docs/constitution.md`.
 
 ### 2. Aprobar la constitución (fase 1)
 
-Usa el prompt de Constitución de `docs/prompts.md`. Edita `docs/constitution.md` con los principios concretos del proyecto y espera la aprobación del usuario.
+Usa el prompt de Constitución de `.opencode/skills/anti-vibecode-sdd/prompts.md`. Edita `docs/constitution.md` con los principios concretos del proyecto y espera la aprobación del usuario.
 
 ### 3. Ejecutar el flujo SDD
 
-Sigue las fases 2 a 7 con los prompts de `docs/prompts.md`, una fase cada vez. No saltes fases sin aprobación explícita.
+Sigue las fases 2 a 7 con los prompts de `.opencode/skills/anti-vibecode-sdd/prompts.md`, una fase cada vez. No saltes fases sin aprobación explícita.
 
-### 4. Trabajar con el estándar anti-vibecode
+### 4. La skill `anti-vibecode-sdd`
 
-- `docs/standard/anti-vibecode-guide.md` — guía detallada (guardrails de calidad, diseño, accesibilidad, tests).
-- `docs/standard/anti-vibecode-standard.json` — espejo machine-readable de las reglas.
-- `docs/standard/anti-vibecode-prompt.md` — prompt portable para sesiones donde no está este repo.
+El estándar vive empaquetado como skill en `.opencode/skills/anti-vibecode-sdd/` (OpenCode la carga automáticamente al arrancar):
+
+- `SKILL.md` — workflow SDD condensado y punto de entrada de la skill.
+- `anti-vibecode-guide.md` — guía detallada (guardrails de calidad, diseño, accesibilidad, tests).
+- `anti-vibecode-standard.json` — espejo machine-readable de las reglas.
+- `anti-vibecode-prompt.md` — prompt portable para sesiones donde no está este repo.
+- `prompts.md` — un prompt por fase SDD.
 
 ### 5. Validar antes de declarar terminado
 
 Recorre `docs/checklist.md` y la fase 7 (Validación): evidencia por RF, no declaraciones sin verificar.
+
+### 6. Usar la skill en otras herramientas (opcional)
+
+| Herramienta | Dónde |
+|-------------|-------|
+| OpenCode (este repo) | Automático — `.opencode/skills/` se escanea al arrancar |
+| OpenCode (global) | Copia la carpeta a `~/.config/opencode/skills/` |
+| Claude Code | Copia la carpeta a `.claude/skills/` (proyecto) o `~/.claude/skills/` (global) |
+| Codex CLI / sin skills | Usa `AGENTS.md` como contrato y `anti-vibecode-prompt.md` como set de instrucciones portable |
+
+Reinicia OpenCode después de añadir o modificar skills.

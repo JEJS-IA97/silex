@@ -5,9 +5,9 @@ La base funciona mejor como un sistema de capas:
 1. `AGENTS.md` = contrato operativo y jerarquía.
 2. `docs/constitution.md` = reglas específicas del proyecto.
 3. `specs/` = comportamiento y alcance aprobados.
-4. `docs/standard/anti-vibecode-guide.md` = estándar detallado.
-5. `docs/standard/anti-vibecode-standard.json` = espejo legible por máquinas.
-6. `docs/prompts.md` = interfaz para ejecutar SDD.
+4. `.opencode/skills/anti-vibecode-sdd/anti-vibecode-guide.md` = estándar detallado.
+5. `.opencode/skills/anti-vibecode-sdd/anti-vibecode-standard.json` = espejo legible por máquinas.
+6. `.opencode/skills/anti-vibecode-sdd/prompts.md` = interfaz para ejecutar SDD.
 7. `docs/role.md` / `docs/references.md` = referencias opcionales.
 8. `.opencode/agents/researcher.md` = investigación aislada, sin edición.
 

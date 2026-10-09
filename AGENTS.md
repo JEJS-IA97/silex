@@ -1,4 +1,4 @@
-# AGENTS.md — {{NOMBRE_PROYECTO}}
+# AGENTS.md — {{PROJECT_NAME}}
 
 This file is the agent's operational contract. Project rules must not be interpreted as isolated fragments: the following hierarchy determines which document wins.
 
@@ -8,21 +8,21 @@ This file is the agent's operational contract. Project rules must not be interpr
 2. **Approved constitution** in `docs/constitution.md`.
 3. **Approved spec and plan** of the active feature.
 4. **This AGENTS.md**: general operational rules.
-5. `docs/standard/anti-vibecode-guide.md` and `docs/standard/anti-vibecode-standard.json`: quality standards and guardrails.
-6. `docs/role.md`, `docs/prompts.md`, `docs/web-prompts.md` and `docs/references.md`: operational or reference material, never higher authority.
+5. `.opencode/skills/anti-vibecode-sdd/anti-vibecode-guide.md` and `.opencode/skills/anti-vibecode-sdd/anti-vibecode-standard.json`: quality standards and guardrails.
+6. `docs/role.md`, `.opencode/skills/anti-vibecode-sdd/prompts.md`, `docs/web-prompts.md` and `docs/references.md`: operational or reference material, never higher authority.
 
 If there is an unresolved conflict about security, data integrity or behavior, **do not improvise**: stop and request the required decision.
 
 ## Project
-{{DESCRIPCIÓN_BREVE_DEL_PROYECTO}}
+{{PROJECT_SHORT_DESCRIPTION}}
 
 Stack: {{STACK}}.
 Structure: code in `src/`, tests in `tests/`, specs in `specs/`.
 
 ## Commands
-- Run: `{{COMANDO_EJECUCION}}`
-- Tests: `{{COMANDO_TESTS}}`
-- Lint/format: `{{COMANDO_LINT}}`
+- Run: `{{RUN_COMMAND}}`
+- Tests: `{{TEST_COMMAND}}`
+- Lint/format: `{{LINT_COMMAND}}`
 
 ## Work classification
 
@@ -45,7 +45,7 @@ Traceability must cover every behavior change; do not use the RF requirement as 
 - Make the smallest reversible change that fixes the root cause.
 - Preserve behavior unrelated to the task.
 - Do not add dependencies, abstractions, UI or effects just to make the project look more complete or modern.
-- **UI work:** before designing or touching interface code, load the `frontend-ui-engineering` skill (skill tool in OpenCode; if the skill is unavailable in the tool, follow the design sections of `docs/standard/anti-vibecode-guide.md`). Aim for an elegant, modern, polished design: effects and motion are allowed when they serve a real purpose, never as decoration (guide 1.1: intentionality, not prohibition).
+- **UI work:** before designing or touching interface code, load the `frontend-ui-engineering` skill (skill tool in OpenCode; if the skill is unavailable in the tool, follow the design sections of `.opencode/skills/anti-vibecode-sdd/anti-vibecode-guide.md`). Aim for an elegant, modern, polished design: effects and motion are allowed when they serve a real purpose, never as decoration (guide 1.1: intentionality, not prohibition).
 
 ## Verification
 

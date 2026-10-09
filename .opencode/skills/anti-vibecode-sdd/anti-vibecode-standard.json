@@ -55,8 +55,8 @@
       "approved-constitution",
       "active-approved-spec-and-plan",
       "AGENTS.md",
-      "docs/standard/anti-vibecode-guide.md",
-      "docs/standard/anti-vibecode-standard.json",
+      ".opencode/skills/anti-vibecode-sdd/anti-vibecode-guide.md",
+      ".opencode/skills/anti-vibecode-sdd/anti-vibecode-standard.json",
       "role-and-reference-prompts"
     ],
     "missing_decision": "stop_and_request_decision_when_behavior_architecture_security_permissions_data_integrity_or_public_contracts_are_affected",

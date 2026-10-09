@@ -7,17 +7,17 @@ Este archivo contiene una plantilla lista para copiar en `docs/constitution.md` 
 ## Archivo: `docs/constitution.md`
 
 ```markdown
-# Constitución — {{NOMBRE_PROYECTO}}
+# Constitución — {{PROJECT_NAME}}
 
 Principios innegociables. Toda spec, plan y tarea debe cumplirlos.
 Si un requisito entra en conflicto con esta constitución, se detiene el trabajo y se pregunta.
 
-1. **Simplicidad primero**: {{STACK_PRINCIPAL}}. Dependencias mínimas. {{REGLA_DEPENDENCIAS}}.
+1. **Simplicidad primero**: {{MAIN_STACK}}. Dependencias mínimas. {{DEPENDENCY_RULE}}.
 2. **La spec manda**: ningún comportamiento se implementa si no está en la spec activa. Si falta una decisión, se detiene el trabajo y se pregunta.
-3. **Separación de capas**: {{REGLAS_DE_ARQUITECTURA}}. El núcleo es testeable sin la interfaz.
+3. **Separación de capas**: {{ARCHITECTURE_RULES}}. El núcleo es testeable sin la interfaz.
 4. **Verificación como puerta**: cada tarea termina con su verificación en verde. Prohibido avanzar con la verificación en rojo.
-5. **Datos locales y transparentes**: {{REGLAS_DE_PERSISTENCIA}}.
-6. **Idioma**: código e identificadores en inglés; mensajes al usuario y documentación en {{IDIOMA_DOCUMENTACION}}.
+5. **Datos locales y transparentes**: {{PERSISTENCE_RULES}}.
+6. **Idioma**: código e identificadores en inglés; mensajes al usuario y documentación en {{DOCS_LANGUAGE}}.
 ```
 
 ---
