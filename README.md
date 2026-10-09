@@ -65,6 +65,15 @@ El estándar vive empaquetado como skill en `.opencode/skills/anti-vibecode-sdd/
 - `anti-vibecode-prompt.md` — prompt portable para sesiones donde no está este repo.
 - `prompts.md` — un prompt por fase SDD.
 
+### 4.1 Skills de terceros incluidas
+
+Se autocargan igual que la anterior; cada carpeta lleva su `LICENSE` (MIT; `ui-styling` incluye además Apache-2.0 de las fuentes embebidas):
+
+| Skills | Origen |
+|--------|--------|
+| `typeui-fundamentals` | [bergside/typeui](https://github.com/bergside/typeui) — MIT |
+| `banner-design`, `brand`, `design`, `design-system`, `slides`, `ui-styling`, `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) — MIT |
+
 ### 5. Validar antes de declarar terminado
 
 Recorre `docs/checklist.md` y la fase 7 (Validación): evidencia por RF, no declaraciones sin verificar.
