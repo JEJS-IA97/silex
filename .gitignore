@@ -31,3 +31,6 @@ Thumbs.db
 coverage/
 .coverage
 htmlcov/
+
+# Resultados de herramientas
+graphify-out/

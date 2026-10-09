@@ -1,90 +1,77 @@
-# {{PROJECT_NAME}}
+# projects-base
 
-{{PROJECT_SHORT_DESCRIPTION}}
+Plantilla meta para crear proyectos **no vibe-codeados** con Spec-Driven Development (SDD): la especificación manda sobre el código, y ningún comportamiento se implementa sin estar definido y aprobado antes.
 
-Este proyecto sigue **Spec-Driven Development (SDD)**: la especificación manda sobre el código, y ningún comportamiento se implementa sin estar definido y aprobado antes.
+Arranca un proyecto con IA sin heredar el caos del "hazme una app": constitución, specs trazables, checklist de calidad, verificación por requisitos y un set de skills que fuerzan el método.
 
----
+## Quickstart
 
-## ¿Qué es SDD y por qué lo usamos?
-
-**Vibe coding** es pedirle a una IA "hazme una app de X" y aceptar lo que devuelva. Funciona para prototipos, pero produce código imposible de mantener, sin tests, con decisiones no documentadas y errores difíciles de localizar.
-
-**Spec-Driven Development (SDD)** invierte el orden: primero se define **el qué y el por qué** (spec), luego **el cómo** (plan), después **las tareas** (tasks) y solo al final **el código**. Cada fase tiene un prompt específico y un artefacto verificable. Beneficios:
-
-- **Trazabilidad:** cada línea de código existe porque un requisito (RF) la justifica.
-- **Auditabilidad:** se sabe qué se pidió, qué se decidió y por qué.
-- **Robustez:** la verificación es la puerta de entrada; no se avanza con la verificación en rojo.
-- **Mantenibilidad:** el contexto está en archivos, no en la cabeza de nadie.
-- **IA controlada:** el agente sigue reglas fijas, no improvisa.
-
----
-
-## Flujo de trabajo SDD (7 fases)
-
-| # | Fase | Entrada | Salida | Prompt |
-|---|------|---------|--------|--------|
-| 1 | Constitución | Idea del proyecto | `docs/constitution.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
-| 2 | Spec | Constitución + idea | `specs/NNN-*/spec.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
-| 3 | Clarificación | Spec | Spec revisada por QA | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
-| 4 | Plan | Spec + constitución | `specs/NNN-*/plan.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
-| 5 | Tareas | Plan | `specs/NNN-*/tasks.md` | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
-| 6 | Implementación | Tareas | Código + verificación | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
-| 7 | Validación | Spec + código | Veredicto RF por RF | Ver `.opencode/skills/anti-vibecode-sdd/prompts.md` |
-
-**Regla de oro:** cada fase espera aprobación humana antes de pasar a la siguiente.
-
----
-
-## Cómo usar esta base (paso a paso)
-
-### 1. Clonar y renombrar
-
-```bash
-git clone <esta-base> {{PROJECT_NAME}}
-cd {{PROJECT_NAME}}
+```powershell
+git clone https://github.com/JEJS-IA97/projects-base.git mi-proyecto
+cd mi-proyecto
+.\scripts\init.ps1 -Name "Mi Proyecto" -Description "Descripcion corta del proyecto"
 ```
 
-Reemplaza los placeholders `{{...}}` de `README.md`, `AGENTS.md` y `docs/constitution.md`.
+> Sin PowerShell: `pwsh -File scripts/init.ps1 -Name ... -Description ...`
 
-### 2. Aprobar la constitución (fase 1)
+`init.ps1` convierte el clone en un proyecto limpio listo para subir:
 
-Usa el prompt de Constitución de `.opencode/skills/anti-vibecode-sdd/prompts.md`. Edita `docs/constitution.md` con los principios concretos del proyecto y espera la aprobación del usuario.
+| Paso | Qué hace |
+|------|----------|
+| Placeholders | Rellena `{{PROJECT_NAME}}` y `{{PROJECT_SHORT_DESCRIPTION}}` en `README.md` y `AGENTS.md` |
+| Skills | Copia las 9 skills a `~/.config/opencode/skills/` (autocarga global de OpenCode) y las borra del repo (`-Skills none` para omitir la instalación) |
+| Referencias | Reescribe `.opencode/skills/` → `~/.config/opencode/skills/` en `AGENTS.md` y `docs/` |
+| Limpieza | Elimina `templates/` y `scripts/` (infraestructura del template) |
+| Git | Historial fresco con un único commit: el proyecto se sube limpio, sin los blobs del template |
 
-### 3. Ejecutar el flujo SDD
+Después: abre OpenCode en la carpeta y ejecuta la **fase 1 (Constitución)**.
 
-Sigue las fases 2 a 7 con los prompts de `.opencode/skills/anti-vibecode-sdd/prompts.md`, una fase cada vez. No saltes fases sin aprobación explícita.
+## Flujo SDD (7 fases)
 
-### 4. La skill `anti-vibecode-sdd`
+| # | Fase | Entrada | Salida |
+|---|------|---------|--------|
+| 1 | Constitución | Idea del proyecto | `docs/constitution.md` aprobado |
+| 2 | Spec | Constitución + idea | `specs/NNN-*/spec.md` |
+| 3 | Clarificación | Spec | Spec revisada por QA |
+| 4 | Plan | Spec + constitución | `specs/NNN-*/plan.md` |
+| 5 | Tareas | Plan | `specs/NNN-*/tasks.md` |
+| 6 | Implementación | Tareas | Código + verificación |
+| 7 | Validación | Spec + código | Veredicto RF por RF |
 
-El estándar vive empaquetado como skill en `.opencode/skills/anti-vibecode-sdd/` (OpenCode la carga automáticamente al arrancar):
+**Regla de oro:** cada fase espera aprobación humana antes de pasar a la siguiente. Los prompts (uno por fase) viven en `~/.config/opencode/skills/anti-vibecode-sdd/prompts.md`.
 
-- `SKILL.md` — workflow SDD condensado y punto de entrada de la skill.
-- `anti-vibecode-guide.md` — guía detallada (guardrails de calidad, diseño, accesibilidad, tests).
-- `anti-vibecode-standard.json` — espejo machine-readable de las reglas.
-- `anti-vibecode-prompt.md` — prompt portable para sesiones donde no está este repo.
-- `prompts.md` — un prompt por fase SDD.
+Por qué SDD en lugar de vibe coding: trazabilidad (cada línea existe porque un RF la justifica), auditabilidad, verificación como puerta de entrada, contexto en archivos y IA sujeta a reglas fijas.
 
-### 4.1 Skills de terceros incluidas
+## Qué incluye
 
-Se autocargan igual que la anterior; cada carpeta lleva su `LICENSE` (MIT; `ui-styling` incluye además Apache-2.0 de las fuentes embebidas):
+| Componente | Ruta | Papel |
+|------------|------|-------|
+| Contrato del agente | `AGENTS.md` (+ `CLAUDE.md`) | Jerarquía de autoridad, reglas, comandos |
+| Método SDD | `docs/` | `constitution.md`, `checklist.md`, `role.md`, guía y prompts |
+| Plantillas de spec | `specs/001-nombre-feature-mvp/` | `spec.md`, `plan.md`, `tasks.md` con `{{...}}` |
+| Skill anti-vibecode | `.opencode/skills/anti-vibecode-sdd/` | Workflow SDD, guía, estándar JSON, prompts (se instala en global en init) |
+| Skills de UI | `.opencode/skills/` | `typeui-fundamentals` + suite `ui-ux-pro-max` (con LICENSE por carpeta) |
+| Plugin de grafo | `.opencode/plugins/graphify.js` | Grafo de conocimiento del código (salida a `graphify-out/`, ignorada por git) |
+| Código | `src/`, `tests/` | Vacíos, con `.gitkeep` |
 
-| Skills | Origen |
-|--------|--------|
-| `typeui-fundamentals` | [bergside/typeui](https://github.com/bergside/typeui) — MIT |
-| `banner-design`, `brand`, `design`, `design-system`, `slides`, `ui-styling`, `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) — MIT |
+## Qué NO viaja al proyecto nuevo
 
-### 5. Validar antes de declarar terminado
+- **`.opencode/skills/`** — instaladas en global; el repo del proyecto queda sin ellas.
+- **`templates/`, `scripts/`** — infraestructura del template; se eliminan en init.
+- **Resultados** — `graphify-out/`, `coverage/`, `node_modules/` etc. ya están en `.gitignore`.
 
-Recorre `docs/checklist.md` y la fase 7 (Validación): evidencia por RF, no declaraciones sin verificar.
+La fuente de verdad de las skills es este repositorio: en otra máquina, clónalo y copia `.opencode/skills/*` a `~/.config/opencode/skills/`.
 
-### 6. Usar la skill en otras herramientas (opcional)
+## Usar las skills en otras herramientas (opcional)
 
 | Herramienta | Dónde |
 |-------------|-------|
-| OpenCode (este repo) | Automático — `.opencode/skills/` se escanea al arrancar |
-| OpenCode (global) | Copia la carpeta a `~/.config/opencode/skills/` |
+| OpenCode | Automático — `~/.config/opencode/skills/` se escanea al arrancar |
 | Claude Code | Copia la carpeta a `.claude/skills/` (proyecto) o `~/.claude/skills/` (global) |
 | Codex CLI / sin skills | Usa `AGENTS.md` como contrato y `anti-vibecode-prompt.md` como set de instrucciones portable |
 
 Reinicia OpenCode después de añadir o modificar skills.
+
+## Validar antes de declarar terminado
+
+Recorre `docs/checklist.md` y la fase 7 (Validación): evidencia por RF, no declaraciones sin verificar.
